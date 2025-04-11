@@ -1,26 +1,23 @@
 steps:
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', '${_REGION}-docker.pkg.dev/$PROJECT_ID/devops-repo/devops-app:$SHORT_SHA', '.']
-
+    args: ['build', '-t', 'asia-south1-docker.pkg.dev/$PROJECT_ID/devops-repo/devops-app', '.']
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', '${_REGION}-docker.pkg.dev/$PROJECT_ID/devops-repo/devops-app:$SHORT_SHA']
-
+    args: ['push', 'asia-south1-docker.pkg.dev/$PROJECT_ID/devops-repo/devops-app']
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
     args:
-      - 'run'
-      - 'deploy'
-      - 'devops-app'
-      - '--image'
-      - '${_REGION}-docker.pkg.dev/$PROJECT_ID/devops-repo/devops-app:$SHORT_SHA'
-      - '--region'
-      - '${_REGION}'
-      - '--platform'
-      - 'managed'
-      - '--allow-unauthenticated'
-
-substitutions:
-  _REGION: 'us-central1'
-
+      [
+        'run',
+        'deploy',
+        'devops-app',
+        '--image',
+        'asia-south1-docker.pkg.dev/$PROJECT_ID/devops-repo/devops-app',
+        '--region',
+        'asia-south1',
+        '--platform',
+        'managed',
+        '--allow-unauthenticated'
+      ]
 images:
-  - '${_REGION}-docker.pkg.dev/$PROJECT_ID/devops-repo/devops-app:$SHORT_SHA'
+  - 'asia-south1-docker.pkg.dev/$PROJECT_ID/devops-repo/devops-app'
+
