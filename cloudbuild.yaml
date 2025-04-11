@@ -21,3 +21,6 @@ steps:
 images:
   - 'asia-south1-docker.pkg.dev/$PROJECT_ID/devops-repo/devops-app'
 
+options:
+  logBucket: "gs://arvind-devops-project-cloudbuild-logs/"
+  logging: CLOUD_LOGGING_ONLY
